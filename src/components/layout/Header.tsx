@@ -9,6 +9,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 // useCart and Cart removed - not needed for courier panel
 import { Button } from "@/components/ui/Button";
 import { 
@@ -29,8 +30,8 @@ export function Header() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, isAuthenticated, handleSignOut } = useAuth();
+  const { canAccessRoute: canAccess } = usePermissions();
   // const { state: cartState } = useCart(); // Commented out for courier panel
-  // usePermissions removed - not needed for courier panel
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

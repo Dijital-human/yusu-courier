@@ -113,8 +113,8 @@ export async function GET(request: NextRequest) {
           name: item.product.name,
         },
         quantity: item.quantity,
-        price: item.price,
-        total: item.quantity * item.price,
+        price: Number(item.price),
+        total: item.quantity * Number(item.price),
       })),
     }));
 
@@ -157,7 +157,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json(
         { 
           error: "Validation error / Yoxlama xətası",
-          details: validatedFields.error.errors 
+          details: validatedFields.error.issues 
         },
         { status: 400 }
       );

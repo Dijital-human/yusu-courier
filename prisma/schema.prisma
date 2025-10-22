@@ -19,6 +19,8 @@ model User {
   role      UserRole @default(CUSTOMER)
   phone     String?
   isActive  Boolean  @default(true)
+  isOnline  Boolean? @default(false)
+  lastSeen  DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -154,6 +156,8 @@ model Order {
   totalAmount     Decimal
   shippingAddress String // JSON string of address
   addressId       String? // Reference to Address model
+  notes           String? // Order notes
+  estimatedDeliveryTime String? // Estimated delivery time
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
@@ -247,6 +251,7 @@ enum UserRole {
 
 enum OrderStatus {
   PENDING
+  PROCESSING
   CONFIRMED
   SHIPPED
   DELIVERED

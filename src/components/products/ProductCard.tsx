@@ -51,12 +51,17 @@ export function ProductCard({
 }: ProductCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
-  const { addToCart, isInCart } = useCart();
+  const { addItem, state } = useCart();
 
   const handleAddToCart = async () => {
     setIsLoading(true);
     try {
-      await addToCart(product.id, 1);
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: Number(product.price),
+        image: product.images,
+      });
       if (onAddToCart) {
         onAddToCart(product.id);
       }
@@ -227,7 +232,7 @@ export function ProductCard({
             </div>
           ) : isOutOfStock ? (
             "Out of Stock / Stokda Yox"
-          ) : isInCart(product.id) ? (
+          ) : state.items.some(item => item.id === product.id) ? (
             "In Cart / Səbətdə"
           ) : (
             <>

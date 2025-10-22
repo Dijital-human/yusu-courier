@@ -40,7 +40,7 @@ export function ProtectedRoute({
   redirectTo = "/unauthorized",
 }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading, user } = useAuth();
-  const { can, canAccess } = usePermissions();
+  const { canAccess } = usePermissions();
 
   // Show loading state / Yükləmə vəziyyətini göstər
   if (isLoading) {
@@ -128,7 +128,7 @@ export function ProtectedRoute({
 
   // Check permission requirement / İcazə tələbini yoxla
   if (requiredPermission) {
-    const hasPermission = can(requiredPermission.action, requiredPermission.resource);
+    const hasPermission = canAccess(requiredPermission.action, requiredPermission.resource);
 
     if (!hasPermission) {
       return (

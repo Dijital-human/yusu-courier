@@ -128,7 +128,7 @@ export function validateCourierEnv() {
   } catch (error) {
     console.error("❌ Courier environment validation failed / Courier mühit doğrulaması uğursuz oldu:");
     if (error instanceof z.ZodError) {
-      error.errors.forEach((err) => {
+      error.issues.forEach((err) => {
         console.error(`  - ${err.path.join(".")}: ${err.message}`);
       });
     }
@@ -251,19 +251,4 @@ export const getRoutingConfig = () => {
   };
 };
 
-// Export all helpers / Bütün köməkçiləri export et
-export {
-  getCourierSessionTimeout,
-  getCourierMaxLoginAttempts,
-  getCourierLogLevel,
-  isCourierAuditLogEnabled,
-  isCourierLocationLogEnabled,
-  getCourierPanelConfig,
-  getDeliveryConfig,
-  getLocationTrackingConfig,
-  getVehicleConfig,
-  getPaymentConfig,
-  getNotificationConfig,
-  getSafetyConfig,
-  getRoutingConfig,
-};
+// All helpers are already exported individually above
