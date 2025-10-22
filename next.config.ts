@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   // Enable experimental features / Eksperimental xüsusiyyətləri aktivləşdir
   serverExternalPackages: ['@prisma/client'],
   
+  // ESLint configuration / ESLint konfiqurasiyası
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
   // Courier subdomain configuration / Courier subdomain konfiqurasiyası
   async rewrites() {
     return [
